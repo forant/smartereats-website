@@ -11,20 +11,7 @@ export const metadata: Metadata = {
   description: 'Scan or search foods, get a clear score, and decide what\'s better for your goal.',
   generator: 'v0.app',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
+    icon: '/icon-32.png',
     apple: '/apple-icon.png',
   },
 }
