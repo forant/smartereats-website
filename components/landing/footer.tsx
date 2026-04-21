@@ -8,10 +8,10 @@ export function Footer() {
           </div>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <a 
-              href="mailto:support@smartereats.ai" 
+              href="mailto:hello@smartereats.ai" 
               className="hover:text-foreground transition-colors"
             >
-              support@smartereats.ai
+              hello@smartereats.ai
             </a>
             <a 
               href="/privacy" 
