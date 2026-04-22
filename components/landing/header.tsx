@@ -1,11 +1,16 @@
 import Image from "next/image"
+import Link from "next/link"
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="flex items-center justify-center h-16">
-          <div className="flex items-center gap-2.5">
+          <Link
+            href="/"
+            aria-label="SmarterEats home"
+            className="flex items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
             <Image
               src="/logo-mark.png"
               alt="SmarterEats"
@@ -25,7 +30,7 @@ export function Header() {
               <span style={{ fontWeight: 400 }}>Smarter</span>
               <span style={{ fontWeight: 600 }}>Eats</span>
             </span>
-          </div>
+          </Link>
         </div>
       </div>
     </header>

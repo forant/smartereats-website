@@ -6,8 +6,8 @@ const screenshots = [
     alt: "Home screen with Add a food and saved items"
   },
   {
-    src: "/images/screenshot-2.jpg",
-    alt: "Score results showing 9/10 rating"
+    src: "/images/screenshot-2.png",
+    alt: "Results page: Protein Shake with Banana scoring 9/10 as a great post-workout choice"
   },
   {
     src: "/images/screenshot-3.jpg",
