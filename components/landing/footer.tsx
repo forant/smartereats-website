@@ -13,11 +13,17 @@ export function Footer() {
             >
               hello@smartereats.ai
             </a>
-            <a 
-              href="/privacy" 
+            <a
+              href="/privacy"
               className="hover:text-foreground transition-colors"
             >
               Privacy Policy
+            </a>
+            <a
+              href="/terms"
+              className="hover:text-foreground transition-colors"
+            >
+              Terms of Service
             </a>
           </div>
         </div>
