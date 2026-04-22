@@ -16,8 +16,16 @@ function PhoneFrame({ children }: { children: React.ReactNode }) {
 
 export function Hero() {
   return (
-    <section className="py-20 md:py-32">
-      <div className="container mx-auto px-6 max-w-6xl">
+    <section className="relative overflow-hidden py-20 md:py-32 bg-gradient-to-b from-[#f7faf8] to-[#f3f4f6]">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-multiply"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
+        }}
+      />
+      <div className="relative container mx-auto px-6 max-w-6xl">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="space-y-8">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-balance leading-[1.1]">
@@ -39,8 +47,16 @@ export function Hero() {
               </div>
             </a>
           </div>
-          <div className="flex justify-center lg:justify-end">
-            <div className="w-64 md:w-72 lg:w-80">
+          <div className="relative flex justify-center lg:justify-end">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.10), transparent 60%)",
+              }}
+            />
+            <div className="relative w-64 md:w-72 lg:w-80">
               <PhoneFrame>
                 <Image
                   src="/images/hero-phone.png"
