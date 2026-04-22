@@ -192,7 +192,7 @@ export default function TermsPage() {
           <p>If you have any questions about these Terms, please contact us at:</p>
 
           <p>
-            Email: [Insert Contact Email]
+            Email: hello@smartereats.ai
             <br />
             Website: smartereats.ai
           </p>
