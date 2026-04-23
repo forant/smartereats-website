@@ -1,0 +1,18 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["TEAMID.com.smartereats.app"],
+        "components": [
+          {
+            "/": "/r/*",
+            "comment": "Referral deep links"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["TEAMID.com.smartereats.app"]
+  }
+}
