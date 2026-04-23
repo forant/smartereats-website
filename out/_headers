@@ -1,0 +1,12 @@
+# Cloudflare Pages response headers.
+
+# iOS requires the AASA file to be served as application/json over HTTPS with
+# no redirects. Without this header, the file ships as octet-stream and iOS
+# refuses to associate the domain with the app.
+/.well-known/apple-app-site-association
+  Content-Type: application/json
+  Cache-Control: public, max-age=3600
+
+# Referral shell: don't let CDNs pin a stale version.
+/r/*
+  Cache-Control: public, max-age=0, must-revalidate

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
+import Script from 'next/script'
 import { Header } from '@/components/landing/header'
 import './globals.css'
 
@@ -26,7 +26,12 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <Header />
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <Script
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "d2a7bbc1473d40f28681f7eeb47c919f"}'
+          strategy="afterInteractive"
+          defer
+        />
       </body>
     </html>
   )
