@@ -2,4 +2,4 @@
 # Referral deep-link fallback: every /r/:refCode serves the static shell.
 # The client reads the real refCode from window.location on mount.
 # 200 = rewrite (URL stays as /r/abc123). Do NOT use 301/302.
-/r/:code  /r/__placeholder__.html  200
+/r/:code  /r/__placeholder__  200
