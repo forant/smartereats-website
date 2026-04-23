@@ -2,7 +2,7 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["TEAMID.com.smartereats.app"],
+        "appIDs": ["AM6PVF74CC.com.foodscore.FoodScore"],
         "components": [
           {
             "/": "/r/*",
@@ -13,6 +13,6 @@
     ]
   },
   "webcredentials": {
-    "apps": ["TEAMID.com.smartereats.app"]
+    "apps": ["AM6PVF74CC.com.foodscore.FoodScore"]
   }
 }
