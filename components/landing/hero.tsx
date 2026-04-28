@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { AppleIcon } from "lucide-react"
+import { WaitlistForm } from "@/components/landing/waitlist-form"
 
 function PhoneFrame({ children }: { children: React.ReactNode }) {
   return (
@@ -34,18 +34,7 @@ export function Hero() {
             <p className="text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed">
               Scan or search foods, get a clear score, and decide what&apos;s better for your goal.
             </p>
-            <a
-              href="https://apps.apple.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-6 py-3.5 rounded-xl hover:opacity-90 transition-opacity"
-            >
-              <AppleIcon className="w-6 h-6" />
-              <div className="text-left">
-                <div className="text-xs opacity-80">Download on the</div>
-                <div className="text-base font-medium -mt-0.5">App Store</div>
-              </div>
-            </a>
+            <WaitlistForm />
           </div>
           <div className="relative flex justify-center lg:justify-end">
             <div
