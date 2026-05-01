@@ -112,7 +112,7 @@ export function WaitlistForm({ variant = "default", className }: Props) {
           className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3.5 rounded-xl font-medium hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
         >
           {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
-          {isSubmitting ? "Signing up…" : "Sign up to join the waitlist"}
+          {isSubmitting ? "Signing up…" : "Get early access"}
         </button>
       </div>
       {error && (
