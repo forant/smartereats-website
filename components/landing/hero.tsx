@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { WaitlistForm } from "@/components/landing/waitlist-form"
 
 function PhoneFrame({ children }: { children: React.ReactNode }) {
@@ -34,7 +35,15 @@ export function Hero() {
             <p className="text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed">
               Scan or search foods, get a clear score, and decide what&apos;s better for your goal.
             </p>
-            <WaitlistForm />
+            <div className="space-y-3">
+              <WaitlistForm />
+              <Link
+                href="/blog"
+                className="inline-block text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                See how foods actually score →
+              </Link>
+            </div>
           </div>
           <div className="relative flex justify-center lg:justify-end">
             <div

@@ -7,11 +7,17 @@ export function Footer() {
             <span className="text-lg font-semibold">SmarterEats</span>
           </div>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
-            <a 
-              href="mailto:hello@smartereats.ai" 
+            <a
+              href="mailto:hello@smartereats.ai"
               className="hover:text-foreground transition-colors"
             >
               hello@smartereats.ai
+            </a>
+            <a
+              href="/blog"
+              className="hover:text-foreground transition-colors"
+            >
+              Blog
             </a>
             <a
               href="/privacy"
