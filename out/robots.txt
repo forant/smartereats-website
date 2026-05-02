@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /r/
+
+Host: https://smartereats.ai
+Sitemap: https://smartereats.ai/sitemap.xml
