@@ -181,6 +181,7 @@ function mapReviewToIssues(post: ExtractedPost, review: Review): Issue[] {
   if (!review.comparison_makes_sense) {
     issues.push({
       ...base,
+      check_id: "llm.comparison-sense",
       severity: "high",
       issue_category: "comparison_logic",
       issue: `LLM: comparison may not make sense — ${review.comparison_makes_sense_reason}`,
@@ -192,6 +193,7 @@ function mapReviewToIssues(post: ExtractedPost, review: Review): Issue[] {
   if (!review.unusual_framing_justified) {
     issues.push({
       ...base,
+      check_id: "llm.unusual-framing",
       severity: "medium",
       issue_category: "comparison_logic",
       issue: `LLM: unusual comparison not justified — ${review.unusual_framing_justified_reason}`,
@@ -203,6 +205,7 @@ function mapReviewToIssues(post: ExtractedPost, review: Review): Issue[] {
   if (!review.explanation_matches_score) {
     issues.push({
       ...base,
+      check_id: "llm.verdict-match",
       severity: "high",
       issue_category: "content_quality",
       issue: `LLM: verdict doesn't match the data — ${review.explanation_matches_score_reason}`,
@@ -214,6 +217,7 @@ function mapReviewToIssues(post: ExtractedPost, review: Review): Issue[] {
   if (!review.alternatives_relevant) {
     issues.push({
       ...base,
+      check_id: "llm.alternatives",
       severity: "medium",
       issue_category: "content_quality",
       issue: `LLM: alternatives feel off — ${review.alternatives_relevant_reason}`,
@@ -224,6 +228,7 @@ function mapReviewToIssues(post: ExtractedPost, review: Review): Issue[] {
   if (!review.feels_useful_and_non_spammy) {
     issues.push({
       ...base,
+      check_id: "llm.useful-non-spammy",
       severity: "high",
       issue_category: "content_quality",
       issue: `LLM: post feels generic / spammy — ${review.feels_useful_reason}`,
@@ -234,6 +239,7 @@ function mapReviewToIssues(post: ExtractedPost, review: Review): Issue[] {
   for (const claim of review.contradictions_or_awkward_claims) {
     issues.push({
       ...base,
+      check_id: "llm.contradiction",
       severity: "medium",
       issue_category: "content_quality",
       issue: `LLM: contradiction or awkward claim — ${claim}`,
@@ -244,6 +250,7 @@ function mapReviewToIssues(post: ExtractedPost, review: Review): Issue[] {
   if (review.notes && review.notes.trim()) {
     issues.push({
       ...base,
+      check_id: "llm.note",
       severity: "low",
       issue_category: "content_quality",
       issue: `LLM note: ${review.notes.trim()}`,

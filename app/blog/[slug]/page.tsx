@@ -3,7 +3,10 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { MDXRemote } from "next-mdx-remote/rsc"
 import { BlogCTA } from "@/components/blog/blog-cta"
+import { RelatedPosts } from "@/components/blog/related-posts"
 import { formatDate, getAllSlugs, getPostBySlug } from "@/lib/blog"
+
+const mdxComponents = { RelatedPosts }
 
 const SITE_URL = "https://smartereats.ai"
 
@@ -104,7 +107,7 @@ export default async function BlogPostPage({
       </header>
 
       <article className="prose">
-        <MDXRemote source={post.content} />
+        <MDXRemote source={post.content} components={mdxComponents} />
       </article>
 
       <BlogCTA />

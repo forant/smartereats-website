@@ -44,6 +44,39 @@ Each post is sent to Claude with a cached editorial-review system prompt. Return
 
 LLM checks default to `claude-opus-4-7` with adaptive thinking and `medium` effort, with the system prompt cached via `cache_control` to amortize cost across the run. Override the model and effort with `--model` and `--effort`.
 
+### Linking between posts (`<RelatedPosts>`)
+
+Internal post-to-post links use a server component, not hardcoded markdown links. This way, when you rename a post's title, every "Related Comparisons" section that links to it picks up the new title automatically — no drift.
+
+In MDX:
+
+```mdx
+## Related Comparisons
+
+<RelatedPosts slugs="is-cheez-its-healthy-vs-pringles,is-gatorade-healthy-vs-coca-cola" />
+```
+
+`slugs` is a comma-separated string (not a JSX array — `next-mdx-remote/rsc` doesn't evaluate JSX expression attributes by default; string attributes are reliable). The component is registered as an MDX component in [app/blog/[slug]/page.tsx](app/blog/%5Bslug%5D/page.tsx) and lives in [components/blog/related-posts.tsx](components/blog/related-posts.tsx).
+
+Unknown slugs are skipped silently at render time and surfaced loudly by the auditor's `links.missing-target` check.
+
+### Suppressing false positives (`audit_ignore`)
+
+Some checks are heuristic and over-fire on edge cases (a singular product whose name happens to contain a plural noun, etc.). Suppress per post by adding an `audit_ignore` list in frontmatter — each entry is a stable `check_id`:
+
+```yaml
+---
+title: "Is Cheerios Protein Bar Healthy? (Cheerios Protein Bar vs Snickers)"
+description: "..."
+date: "2026-05-02"
+audit_ignore: ["grammar.is-are-mismatch"]
+---
+```
+
+The auditor counts suppressions in the summary so they're not invisible. To re-include them in a run for review, pass `--show-ignored`.
+
+Available `check_id`s are listed in [`scripts/audit-blog/types.ts`](scripts/audit-blog/types.ts) (`CheckId` union). Adding a new check? Add it to that union too.
+
 ### Severity levels
 
 - **blocker** — do not publish (placeholder text, missing required frontmatter, broken internal link, slug collision, factual contradiction).
@@ -77,7 +110,18 @@ pnpm audit:blog -- --slugs a,b,c             # specific slugs only
 pnpm audit:blog -- --model claude-haiku-4-5  # cheaper LLM model
 pnpm audit:blog -- --effort low              # cheaper thinking effort
 pnpm audit:blog -- --out audit-output        # change output directory
+pnpm audit:blog -- --show-ignored            # include suppressed issues in the report
 ```
+
+### CI
+
+[`.github/workflows/blog-audit.yml`](.github/workflows/blog-audit.yml) auto-runs the audit on any push to `main` or PR that touches `content/blog/**`, the auditor source, or the workflow itself. Deterministic-only by default — no API key needed in CI. The workflow:
+
+- uploads the report (`audit-output/`) as a GitHub artifact (`blog-audit-report`)
+- comments on PRs with a summary + the top 10 issues
+- fails on **blocker**-severity issues (the script exits non-zero), so a problem post can't merge to `main`
+
+To enable LLM checks in CI, set `ANTHROPIC_API_KEY` as a repository secret and dispatch the workflow manually with `run_llm: true` (Actions tab → Blog audit → Run workflow). Push/PR runs always stay deterministic to keep CI free.
 
 ### Layout
 

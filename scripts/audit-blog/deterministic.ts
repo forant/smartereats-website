@@ -1,4 +1,4 @@
-import type { ExtractedPost, Issue } from "./types"
+import type { CheckId, ExtractedPost, Issue } from "./types"
 
 const MIN_WORD_COUNT = 250
 
@@ -46,6 +46,7 @@ export function runDeterministicChecks(
   const filenameSlugCollisions = findFilenameSlugCollisions(allPosts)
 
   const push = (
+    checkId: CheckId,
     severity: Issue["severity"],
     category: Issue["issue_category"],
     issue: string,
@@ -56,6 +57,7 @@ export function runDeterministicChecks(
       slug: post.slug,
       title: post.title,
       status: "issue",
+      check_id: checkId,
       severity,
       issue_category: category,
       issue,
@@ -67,6 +69,7 @@ export function runDeterministicChecks(
   // --- Metadata ---
   if (!post.hasMetaTitle || !post.title.trim()) {
     push(
+      "metadata.missing-title",
       "blocker",
       "metadata",
       "Missing frontmatter `title`.",
@@ -75,6 +78,7 @@ export function runDeterministicChecks(
   }
   if (!post.hasMetaDescription || !post.description.trim()) {
     push(
+      "metadata.missing-description",
       "blocker",
       "metadata",
       "Missing frontmatter `description`.",
@@ -83,6 +87,7 @@ export function runDeterministicChecks(
   }
   if (!post.date) {
     push(
+      "metadata.missing-date",
       "blocker",
       "metadata",
       "Missing frontmatter `date`.",
@@ -90,6 +95,7 @@ export function runDeterministicChecks(
     )
   } else if (!/^\d{4}-\d{2}-\d{2}$/.test(post.date)) {
     push(
+      "metadata.invalid-date",
       "high",
       "metadata",
       `Invalid date format: "${post.date}".`,
@@ -100,6 +106,7 @@ export function runDeterministicChecks(
   // --- Title / H1 ---
   if (post.h1 && post.h1.trim().toLowerCase() !== post.title.trim().toLowerCase()) {
     push(
+      "structure.h1-mismatch",
       "medium",
       "structure",
       `MDX H1 ("${post.h1}") doesn't match frontmatter title ("${post.title}").`,
@@ -109,6 +116,7 @@ export function runDeterministicChecks(
   const mdxH1Count = (post.rawContent.match(/^#\s+/gm) ?? []).length
   if (mdxH1Count > 1) {
     push(
+      "structure.multiple-h1",
       "high",
       "structure",
       `Multiple MDX H1 headings (${mdxH1Count}). Should be at most one.`,
@@ -117,14 +125,12 @@ export function runDeterministicChecks(
   }
 
   // --- Is/Are grammar ---
-  // Runs on any title with a leading "Is X Healthy" / "Are X Healthy" — even
-  // hybrid titles like "Is Cheez-Its Healthy? (Cheez-Its vs Pringles)" that
-  // postType classifies as "comparison".
   if (post.isAreSubject) {
     const { verb, subject } = post.isAreSubject
     const subjectLower = subject.toLowerCase()
     if (verb === "Is" && looksPlural(subjectLower)) {
       push(
+        "grammar.is-are-mismatch",
         "medium",
         "grammar",
         `Title uses "Is" with a plural-looking subject ("${subject}").`,
@@ -138,6 +144,7 @@ export function runDeterministicChecks(
       !KNOWN_SINGULAR_BRANDS.has(subjectLower)
     ) {
       push(
+        "grammar.is-are-mismatch",
         "medium",
         "grammar",
         `Title uses "Are" with a singular-looking subject ("${subject}").`,
@@ -150,6 +157,7 @@ export function runDeterministicChecks(
   // --- Empty / duplicate sections ---
   for (const empty of post.emptyHeadings) {
     push(
+      "structure.empty-section",
       "high",
       "structure",
       `Empty section: heading "${empty}" has no content.`,
@@ -158,6 +166,7 @@ export function runDeterministicChecks(
   }
   for (const dup of post.duplicateHeadings) {
     push(
+      "duplicate.heading",
       "medium",
       "duplicate",
       `Duplicate heading: "${dup}" appears more than once.`,
@@ -168,6 +177,7 @@ export function runDeterministicChecks(
   // --- Placeholders ---
   for (const ph of post.placeholderHits) {
     push(
+      "content.placeholder",
       "blocker",
       "content_quality",
       `Placeholder text detected: "${ph}".`,
@@ -178,6 +188,7 @@ export function runDeterministicChecks(
   // --- Word count ---
   if (post.wordCount < MIN_WORD_COUNT) {
     push(
+      "content.low-word-count",
       post.wordCount < MIN_WORD_COUNT / 2 ? "high" : "medium",
       "content_quality",
       `Low word count: ${post.wordCount} words (threshold: ${MIN_WORD_COUNT}).`,
@@ -188,12 +199,10 @@ export function runDeterministicChecks(
   // --- Internal links ---
   for (const link of post.internalLinks) {
     const targetSlug = link.replace(/^\/blog\//, "").replace(/\/$/, "")
-    if (!targetSlug) {
-      // Bare /blog link is the index — fine
-      continue
-    }
+    if (!targetSlug) continue // bare /blog link is the index — fine
     if (!slugIndex.has(targetSlug)) {
       push(
+        "links.missing-target",
         "high",
         "links",
         `Internal link points to missing post: ${link}`,
@@ -205,20 +214,20 @@ export function runDeterministicChecks(
   // --- Duplicate slug across posts ---
   const slugCollisions = allPosts.filter((p) => p.slug === post.slug)
   if (slugCollisions.length > 1 && slugCollisions[0].filename === post.filename) {
-    // Only flag once, on the first occurrence.
     const others = slugCollisions
       .filter((p) => p.filename !== post.filename)
       .map((p) => p.filename)
     push(
+      "duplicate.slug",
       "blocker",
       "duplicate",
       `Slug "${post.slug}" is shared with: ${others.join(", ")}.`,
       "Rename one of the files or set distinct `slug:` values in frontmatter."
     )
   }
-  // Also flag filename / explicit-slug mismatches (will route via the slug, but is confusing):
   if (filenameSlugCollisions.has(post.filename)) {
     push(
+      "metadata.filename-slug-mismatch",
       "low",
       "metadata",
       `Filename and frontmatter slug differ. Routes via "${post.slug}", file is "${post.filename}".`,

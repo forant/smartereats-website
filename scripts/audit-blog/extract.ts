@@ -1,7 +1,7 @@
 import fs from "node:fs"
 import path from "node:path"
 import matter from "gray-matter"
-import type { ExtractedPost, PostType } from "./types"
+import type { CheckId, ExtractedPost, PostType } from "./types"
 
 const PLACEHOLDER_PATTERNS = [
   /\bTODO\b/i,
@@ -67,7 +67,14 @@ export function extractPost(filename: string): ExtractedPost {
     rawContent: raw,
     hasMetaTitle: Boolean(data.title),
     hasMetaDescription: Boolean(data.description),
+    auditIgnore: parseAuditIgnore(data.audit_ignore),
   }
+}
+
+function parseAuditIgnore(value: unknown): CheckId[] {
+  if (!value) return []
+  if (!Array.isArray(value)) return []
+  return value.filter((v): v is CheckId => typeof v === "string") as CheckId[]
 }
 
 function extractH1(content: string): string | null {
@@ -123,12 +130,22 @@ function extractFoods(title: string, type: PostType): string[] {
 
 function extractInternalLinks(content: string): string[] {
   const out = new Set<string>()
+
   // Markdown links: [text](/blog/...) — strip query/hash, ignore protocol-absolute.
-  const re = /\]\((\/[^)\s#?]+)/g
-  for (const m of content.matchAll(re)) {
+  const reMd = /\]\((\/[^)\s#?]+)/g
+  for (const m of content.matchAll(reMd)) {
     const href = m[1]
     if (href.startsWith("/blog/")) out.add(href)
   }
+
+  // <RelatedPosts slugs="a,b,c" /> — string form (the form actually rendered).
+  const reList = /<RelatedPosts\b[^>]*?\bslugs="([^"]+)"/g
+  for (const m of content.matchAll(reList)) {
+    for (const slug of m[1].split(",").map((s) => s.trim()).filter(Boolean)) {
+      out.add(`/blog/${slug}`)
+    }
+  }
+
   return [...out]
 }
 

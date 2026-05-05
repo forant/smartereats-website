@@ -31,6 +31,7 @@ type Args = {
   model: string
   effort: "low" | "medium" | "high" | "max"
   out: string
+  showIgnored: boolean
 }
 
 function parseArgs(argv: string[]): Args {
@@ -41,6 +42,7 @@ function parseArgs(argv: string[]): Args {
     model: DEFAULT_MODEL,
     effort: "medium",
     out: DEFAULT_OUT,
+    showIgnored: false,
   }
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]
@@ -69,6 +71,9 @@ function parseArgs(argv: string[]): Args {
       case "--out":
         args.out = next()
         break
+      case "--show-ignored":
+        args.showIgnored = true
+        break
       case "-h":
       case "--help":
         printHelp()
@@ -94,6 +99,7 @@ Options:
   --model ID        LLM model (default: ${DEFAULT_MODEL}).
   --effort LEVEL    LLM effort: low | medium | high | max (default: medium).
   --out DIR         Output directory (default: ${DEFAULT_OUT}).
+  --show-ignored    Include suppressed issues in the report (default: hidden).
   -h, --help        Show this message.
 `)
 }
@@ -147,18 +153,21 @@ async function main() {
     }...`
   )
 
-  const issues: Issue[] = []
+  const allIssues: Issue[] = []
+  const ignoreBySlug = new Map(
+    allExtracted.map((p) => [p.slug, new Set(p.auditIgnore)])
+  )
   let postIndex = 0
   for (const post of toAudit) {
     postIndex += 1
     process.stdout.write(`[${postIndex}/${toAudit.length}] ${post.slug} `)
 
-    issues.push(...runDeterministicChecks(post, allExtracted))
+    allIssues.push(...runDeterministicChecks(post, allExtracted))
 
     if (reviewer) {
       try {
         const { issues: llmIssues } = await reviewer.review(post)
-        issues.push(...llmIssues)
+        allIssues.push(...llmIssues)
         process.stdout.write("✓\n")
       } catch (err) {
         process.stdout.write(`✗ (${(err as Error).message})\n`)
@@ -168,10 +177,24 @@ async function main() {
     }
   }
 
+  // Apply per-post `audit_ignore:` suppressions.
+  const kept: Issue[] = []
+  let suppressed = 0
+  for (const issue of allIssues) {
+    const ignores = ignoreBySlug.get(issue.slug)
+    if (ignores && ignores.has(issue.check_id)) {
+      suppressed += 1
+      if (args.showIgnored) kept.push(issue)
+    } else {
+      kept.push(issue)
+    }
+  }
+
   const report = buildReport({
     totalPosts: allExtracted.length,
     postsAudited: toAudit.length,
-    issues,
+    issues: kept,
+    suppressed,
     model: llmEnabled ? args.model : null,
     llmUsed: llmEnabled,
   })

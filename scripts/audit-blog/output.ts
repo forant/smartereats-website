@@ -17,6 +17,7 @@ const CSV_COLUMNS = [
   "slug",
   "title",
   "status",
+  "check_id",
   "severity",
   "issue_category",
   "issue",
@@ -28,6 +29,7 @@ export function buildReport(opts: {
   totalPosts: number
   postsAudited: number
   issues: Issue[]
+  suppressed: number
   model: string | null
   llmUsed: boolean
 }): AuditReport {
@@ -54,6 +56,7 @@ export function buildReport(opts: {
       postsAudited: opts.postsAudited,
       postsWithIssues: slugsWithIssues.size,
       totalIssues: opts.issues.length,
+      suppressedIssues: opts.suppressed,
       bySeverity,
       byCategory,
     },
@@ -83,6 +86,7 @@ export function printSummary(report: AuditReport): void {
   console.log(`Posts audited:       ${s.postsAudited}`)
   console.log(`Posts with issues:   ${s.postsWithIssues}`)
   console.log(`Total issues:        ${s.totalIssues}`)
+  console.log(`Suppressed (ignored):${" "}${s.suppressedIssues}`)
   console.log(`LLM used:            ${report.llmUsed ? `yes (${report.model})` : "no"}`)
   console.log("")
   console.log("By severity:")

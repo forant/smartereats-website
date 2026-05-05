@@ -1,0 +1,112 @@
+name: Blog audit
+
+# Runs the QA auditor against every push or PR that touches blog content
+# or the auditor itself. Deterministic-only by default — no API key needed in
+# CI. Adds a Pages-blocking failure if any *blocker*-severity issue is found.
+#
+# To enable LLM checks in CI:
+#   1. Add ANTHROPIC_API_KEY as a repository secret.
+#   2. Set the env var below to "1".
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/blog/**"
+      - "scripts/audit-blog/**"
+      - "lib/blog.ts"
+      - ".github/workflows/blog-audit.yml"
+  pull_request:
+    paths:
+      - "content/blog/**"
+      - "scripts/audit-blog/**"
+      - "lib/blog.ts"
+      - ".github/workflows/blog-audit.yml"
+  workflow_dispatch:
+    inputs:
+      run_llm:
+        description: "Run LLM checks (requires ANTHROPIC_API_KEY secret)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run blog audit
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RUN_LLM: ${{ inputs.run_llm == true }}
+        run: |
+          if [ "$RUN_LLM" = "true" ] && [ -n "$ANTHROPIC_API_KEY" ]; then
+            echo "Running with LLM checks"
+            pnpm audit:blog
+          else
+            echo "Running deterministic checks only"
+            pnpm audit:blog --no-llm
+          fi
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blog-audit-report
+          path: audit-output/
+          retention-days: 30
+
+      - name: Summarize on PR
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = 'audit-output/audit-report.json';
+            if (!fs.existsSync(path)) return;
+            const report = JSON.parse(fs.readFileSync(path, 'utf8'));
+            const s = report.summary;
+            const lines = [
+              '## Blog audit',
+              '',
+              `- Posts audited: **${s.postsAudited}** of ${s.totalPosts}`,
+              `- Posts with issues: **${s.postsWithIssues}**`,
+              `- Total issues: **${s.totalIssues}** (suppressed: ${s.suppressedIssues})`,
+              `- LLM checks: ${report.llmUsed ? `yes (\`${report.model}\`)` : 'no (deterministic only)'}`,
+              '',
+              '### By severity',
+              ...Object.entries(s.bySeverity)
+                .filter(([, n]) => n > 0)
+                .map(([sev, n]) => `- **${sev}**: ${n}`),
+            ];
+            if (s.totalIssues > 0) {
+              const top = report.issues.slice(0, 10).map(
+                (i) => `- \`${i.severity}\` · ${i.slug} · ${i.check_id} · ${i.issue}`
+              );
+              lines.push('', '### Top issues', ...top);
+              if (report.issues.length > 10) {
+                lines.push('', `_…and ${report.issues.length - 10} more — see workflow artifact._`);
+              }
+            }
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: lines.join('\n'),
+            });

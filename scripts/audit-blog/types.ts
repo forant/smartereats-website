@@ -9,10 +9,36 @@ export type IssueCategory =
   | "comparison_logic"
   | "duplicate"
 
+/** Stable check identifier — used to suppress specific issues per post. */
+export type CheckId =
+  | "metadata.missing-title"
+  | "metadata.missing-description"
+  | "metadata.missing-date"
+  | "metadata.invalid-date"
+  | "metadata.filename-slug-mismatch"
+  | "structure.h1-mismatch"
+  | "structure.multiple-h1"
+  | "structure.empty-section"
+  | "duplicate.heading"
+  | "duplicate.slug"
+  | "grammar.is-are-mismatch"
+  | "content.placeholder"
+  | "content.low-word-count"
+  | "links.missing-target"
+  | "llm.comparison-sense"
+  | "llm.unusual-framing"
+  | "llm.verdict-match"
+  | "llm.alternatives"
+  | "llm.useful-non-spammy"
+  | "llm.contradiction"
+  | "llm.note"
+
 export type Issue = {
   slug: string
   title: string
   status: "issue"
+  /** Stable check id — pin in `audit_ignore` frontmatter to suppress. */
+  check_id: CheckId
   severity: Severity
   issue_category: IssueCategory
   issue: string
@@ -61,6 +87,8 @@ export type ExtractedPost = {
   rawContent: string
   hasMetaTitle: boolean
   hasMetaDescription: boolean
+  /** Check ids the post explicitly opts out of (from `audit_ignore:` frontmatter). */
+  auditIgnore: CheckId[]
 }
 
 export type AuditReport = {
@@ -72,6 +100,8 @@ export type AuditReport = {
     postsAudited: number
     postsWithIssues: number
     totalIssues: number
+    /** Issues silenced by per-post `audit_ignore:` frontmatter. */
+    suppressedIssues: number
     bySeverity: Record<Severity, number>
     byCategory: Record<IssueCategory, number>
   }
