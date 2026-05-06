@@ -68,7 +68,13 @@ export function extractPost(filename: string): ExtractedPost {
     hasMetaTitle: Boolean(data.title),
     hasMetaDescription: Boolean(data.description),
     auditIgnore: parseAuditIgnore(data.audit_ignore),
+    topicTags: parseStringList(data.topics),
   }
+}
+
+function parseStringList(value: unknown): string[] {
+  if (!Array.isArray(value)) return []
+  return (value as unknown[]).filter((v): v is string => typeof v === "string")
 }
 
 function parseAuditIgnore(value: unknown): CheckId[] {

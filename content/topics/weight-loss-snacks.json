@@ -1,0 +1,52 @@
+{
+  "slug": "weight-loss-snacks",
+  "title": "Weight Loss Snacks",
+  "description": "Snacks that actually support weight loss — lower-sugar, higher-protein, lower-calorie options reviewed honestly against the candy and chips they replace.",
+  "keywords": [
+    "weight loss snacks",
+    "low calorie snacks",
+    "low sugar snacks",
+    "filling snacks for weight loss",
+    "best snacks for losing weight"
+  ],
+  "intro": "There's no magic weight-loss snack — but there are smarter swaps. We focus on per-calorie satiety, sugar load, and how each option compares to a typical candy bar or sugary drink. The right snack helps you stay full; the wrong one quietly eats your daily calorie budget.",
+  "featuredPostSlugs": [
+    "is-rxbar-dark-chocolate-peanut-butter-healthy-vs-snickers",
+    "is-coconut-water-healthy",
+    "is-green-tea-healthy-vs-coke"
+  ],
+  "sections": [
+    {
+      "title": "Better-Than-Candy Bars",
+      "description": "Bars that beat their candy alternatives on sugar and protein, even if they're not perfect.",
+      "postSlugs": [
+        "is-rxbar-dark-chocolate-peanut-butter-healthy-vs-snickers",
+        "is-rxbar-honey-cinnamon-peanut-butter-healthy-vs-snickers",
+        "is-clif-bar-builders-bar-healthy-vs-snickers",
+        "kind-bar-vs-snickers",
+        "is-kind-bar-healthy-vs-snickers"
+      ]
+    },
+    {
+      "title": "Lower-Sugar Drink Swaps",
+      "description": "If you replace one sugary drink a day, you change your daily sugar intake more than any snack swap.",
+      "postSlugs": [
+        "is-green-tea-healthy-vs-coke",
+        "is-coconut-water-healthy",
+        "is-gatorade-healthy-vs-coconut-water",
+        "is-powerade-healthy-vs-coconut-water"
+      ]
+    },
+    {
+      "title": "Lighter Snack Choices",
+      "description": "Lower-calorie packaged snacks that won't leave you hungry an hour later.",
+      "postSlugs": [
+        "are-kind-bars-healthy",
+        "is-chobani-flip-s-mores-healthy",
+        "is-yoplait-go-gurt-healthy-vs-snickers",
+        "oat-milk-vs-almond-milk"
+      ]
+    }
+  ],
+  "relatedTopicSlugs": ["high-protein-snacks", "healthy-drinks", "healthy-convenience-foods"]
+}

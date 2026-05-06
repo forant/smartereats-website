@@ -1,0 +1,106 @@
+{
+  "slug": "healthy-convenience-foods",
+  "title": "Healthy Convenience Foods",
+  "description": "Smart picks across the grab-and-go aisles — chips, crackers, fruit snacks, instant oatmeal, and packaged cereals reviewed against the candy-coded versions they sit next to.",
+  "keywords": [
+    "healthy convenience foods",
+    "healthy packaged snacks",
+    "healthy chips",
+    "healthy crackers",
+    "healthy instant oatmeal"
+  ],
+  "intro": "Convenience food is unavoidable; the goal is to make the convenient choice the better choice. We compare common packaged snacks to their candy/chip alternatives, so you can swap up rather than out.",
+  "featuredPostSlugs": [
+    "is-cheez-its-healthy-vs-pringles",
+    "is-doritos-healthy",
+    "are-frosted-flakes-healthy"
+  ],
+  "sections": [
+    {
+      "title": "Chips, Crisps & Veggie Straws",
+      "postSlugs": [
+        "is-cheez-its-healthy-vs-pringles",
+        "is-doritos-healthy",
+        "is-pop-corners-healthy-vs-doritos",
+        "is-pop-corners-sea-salt-healthy-vs-doritos",
+        "is-sea-salt-popcorners-healthy",
+        "is-kettle-corn-popcorners-healthy",
+        "is-kettle-corn-popcorners-healthy-vs-doritos",
+        "is-kettle-sweet-sweet-chilli-sour-cream-chips-healthy-vs-dor",
+        "are-kettle-sweet-sweet-chilli-sour-cream-chips-healthy",
+        "is-kickin-cheddar-corn-nuts-healthy-vs-doritos",
+        "are-kickin-cheddar-corn-nuts-healthy",
+        "is-white-cheddar-popcorners-healthy",
+        "is-white-cheddar-popcorners-healthy-vs-doritos",
+        "is-garden-veggie-straws-healthy-vs-doritos",
+        "is-garden-veggie-straws-sour-cream-chives-healthy-vs-doritos",
+        "is-hippeas-veggie-straws-healthy-vs-doritos"
+      ]
+    },
+    {
+      "title": "Crackers",
+      "postSlugs": [
+        "is-triscuits-healthy-vs-doritos",
+        "is-triscuit-classic-wheat-crackers-healthy-vs-doritos",
+        "are-triscuit-classic-wheat-crackers-healthy",
+        "is-triscuit-thin-crisps-healthy-vs-doritos",
+        "is-ritz-crackers-healthy-vs-doritos",
+        "is-simple-truth-snack-crackers-healthy-vs-snickers"
+      ]
+    },
+    {
+      "title": "Fruit Snacks & Gummies",
+      "postSlugs": [
+        "is-skittles-healthy",
+        "is-go-bio-organic-sour-fruit-gummies-healthy-vs-skittles",
+        "are-go-bio-organic-sour-fruit-gummies-healthy",
+        "is-fruifuls-healthy-vs-snickers",
+        "is-welch-s-fruit-snacks-healthy-vs-skittles",
+        "is-kirkland-fruit-snacks-healthy",
+        "are-kirkland-fruit-snacks-healthy",
+        "is-kirklaknd-organic-fruit-snacks-healthy-vs-skittles"
+      ]
+    },
+    {
+      "title": "Cereals & Breakfast Picks",
+      "postSlugs": [
+        "are-frosted-flakes-healthy",
+        "is-special-k-healthy-vs-frosted-flakes",
+        "is-special-k-fruit-yogurt-healthy-vs-frosted-flakes",
+        "is-special-k-pastry-crisps-healthy",
+        "is-special-k-pastry-crisps-healthy-vs-frosted-flakes",
+        "is-special-k-brown-sugar-cinnamon-pastry-crisps-healthy",
+        "is-special-k-brown-sugar-cinnamon-pastry-crisps-healthy-vs-f",
+        "are-special-k-red-berries-healthy",
+        "is-special-k-red-berries-healthy-vs-frosted-flakes",
+        "is-blueberry-cheerios-healthy",
+        "is-cheerios-blueberry-healthy-vs-frosted-flakes",
+        "is-kellogg-s-raisin-bran-healthy",
+        "is-kellogg-s-raisin-bran-healthy-vs-frosted-flakes",
+        "is-kashi-go-peanut-butter-crunch-cereal-healthy",
+        "is-kashi-go-peanut-butter-crunch-cereal-healthy-vs-frosted-f",
+        "is-kashi-chocolate-chip-chia-7-grain-cerel-healthy",
+        "is-kashi-chocolate-chip-chia-7-grain-healthy-vs-frosted-flak",
+        "is-belvita-breakfast-biscuit-cinnamon-oat-healthy",
+        "is-belvita-breakfast-biscuit-cinnamon-oat-healthy-vs-frosted",
+        "is-pop-tarts-healthy-vs-energy-bar"
+      ]
+    },
+    {
+      "title": "Cookies & Sweet Treats",
+      "postSlugs": [
+        "is-soft-baked-chocolate-chip-cookies-healthy-vs-snickers"
+      ]
+    },
+    {
+      "title": "Instant Oatmeal & Hot Breakfast",
+      "postSlugs": [
+        "is-quaker-maple-brown-sugar-instant-oatmeal-healthy",
+        "is-quaker-peaches-cream-instant-oatmeal-healthy",
+        "is-quaker-maple-brown-sugar-instant-oatmeal-healthy-vs-frost",
+        "is-quaker-peaches-cream-instant-oatmeal-healthy-vs-frosted-f"
+      ]
+    }
+  ],
+  "relatedTopicSlugs": ["weight-loss-snacks", "protein-bars", "healthy-costco-foods"]
+}

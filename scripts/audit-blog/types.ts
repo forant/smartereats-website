@@ -25,6 +25,7 @@ export type CheckId =
   | "content.placeholder"
   | "content.low-word-count"
   | "links.missing-target"
+  | "topics.unknown-tag"
   | "llm.comparison-sense"
   | "llm.unusual-framing"
   | "llm.verdict-match"
@@ -89,6 +90,8 @@ export type ExtractedPost = {
   hasMetaDescription: boolean
   /** Check ids the post explicitly opts out of (from `audit_ignore:` frontmatter). */
   auditIgnore: CheckId[]
+  /** Topic hub slugs from `topics:` frontmatter. Empty if not tagged. */
+  topicTags: string[]
 }
 
 export type AuditReport = {

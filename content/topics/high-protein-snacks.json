@@ -1,0 +1,58 @@
+{
+  "slug": "high-protein-snacks",
+  "title": "High Protein Snacks",
+  "description": "The best high-protein snacks for satiety, energy, and recovery — honest reviews of bars, yogurts, and packaged staples that actually deliver protein per calorie.",
+  "keywords": [
+    "high protein snacks",
+    "protein bars",
+    "high protein yogurt",
+    "protein-dense snacks",
+    "best protein snacks"
+  ],
+  "intro": "Protein is the single biggest lever for satiety per calorie. We test packaged snacks against the question that actually matters: how much protein do you get per calorie, and what tradeoffs come with it? Below, we break down the best (and worst) protein bars, dairy snacks, and grab-and-go options.",
+  "featuredPostSlugs": [
+    "is-rxbar-dark-chocolate-peanut-butter-healthy-vs-snickers",
+    "is-clif-bar-builders-bar-healthy-vs-snickers",
+    "is-cheerios-protein-bar-healthy-vs-snickers"
+  ],
+  "sections": [
+    {
+      "title": "Best Protein Bars",
+      "description": "Dedicated protein bars reviewed for protein-per-calorie, ingredient quality, and what they really deliver.",
+      "postSlugs": [
+        "is-rxbar-dark-chocolate-peanut-butter-healthy-vs-snickers",
+        "is-rxbar-honey-cinnamon-peanut-butter-healthy-vs-snickers",
+        "is-rxbar-nut-butter-oat-blueberry-cashew-healthy-vs-snickers",
+        "is-rxbar-minis-nut-butter-oat-healthy-vs-snickers",
+        "is-clif-bar-builders-bar-healthy-vs-snickers",
+        "is-clif-bar-builder-s-bar-crispy-peanut-butter-chocolate-hea",
+        "is-builders-bar-healthy",
+        "is-cheerios-protein-bar-healthy-vs-snickers",
+        "is-breakfast-protein-bar-healthy-vs-krispy-kreme"
+      ]
+    },
+    {
+      "title": "Granola Bars With Decent Protein",
+      "description": "Granola bars sit lower on the protein curve than dedicated protein bars, but a few are worth knowing.",
+      "postSlugs": [
+        "is-kind-bar-healthy-vs-snickers",
+        "is-kind-almond-peanut-butter-dark-healthy-vs-snickers",
+        "is-kind-caramel-almond-with-almonds-healthy-vs-snickers",
+        "is-kind-salted-caramel-dark-chocolate-nut-healthy-vs-snicker"
+      ]
+    },
+    {
+      "title": "Protein-Forward Yogurts & Dairy Snacks",
+      "description": "Cup-style yogurts and dairy products reviewed against their candy-bar shadow versions.",
+      "postSlugs": [
+        "is-plain-greek-yogurt-healthy",
+        "is-chobani-flip-s-mores-healthy-vs-snickers",
+        "is-chobani-flip-s-mores-healthy",
+        "is-yoplait-go-gurt-healthy-vs-snickers",
+        "is-low-fat-strawberry-go-gurt-healthy-vs-snickers",
+        "is-gogurt-healthy-vs-snickers"
+      ]
+    }
+  ],
+  "relatedTopicSlugs": ["protein-bars", "weight-loss-snacks"]
+}

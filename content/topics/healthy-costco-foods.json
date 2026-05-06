@@ -1,0 +1,45 @@
+{
+  "slug": "healthy-costco-foods",
+  "title": "Healthy Costco Foods",
+  "description": "Honest reviews of Kirkland Signature and other Costco staples — separating the genuinely smart buys from the ones whose health-halo marketing doesn't hold up.",
+  "keywords": [
+    "healthy costco foods",
+    "kirkland signature healthy",
+    "costco snacks",
+    "best costco foods",
+    "kirkland review"
+  ],
+  "intro": "Costco's bulk format makes the choice between a smart staple and a regret-purchase higher stakes — you're committing to a hundred servings, not one. Here's our running review of Kirkland Signature snacks and other Costco regulars, scored against their nutrition labels, not their packaging.",
+  "featuredPostSlugs": [
+    "are-kirkland-fruit-snacks-healthy",
+    "is-kirkland-dipped-chewy-granola-bar-healthy-vs-snickers"
+  ],
+  "sections": [
+    {
+      "title": "Kirkland Signature Reviews",
+      "postSlugs": [
+        "is-kirkland-fruit-snacks-healthy",
+        "are-kirkland-fruit-snacks-healthy",
+        "is-kirklaknd-organic-fruit-snacks-healthy-vs-skittles",
+        "is-kirkland-dipped-chewy-granola-bar-healthy-vs-snickers",
+        "are-kirkland-dipped-chewy-granola-bars-healthy"
+      ]
+    },
+    {
+      "title": "Costco Pantry Staples",
+      "description": "Brands like Kashi and Nature Valley that show up in most Costco runs.",
+      "postSlugs": [
+        "is-kashi-trail-mix-chewy-granola-bar-healthy",
+        "is-kashi-honey-oat-flax-crunchy-7-grain-with-quinoa-bars-hea",
+        "are-kashi-honey-oat-flax-bars-healthy",
+        "is-kashi-go-peanut-butter-crunch-cereal-healthy",
+        "is-kashi-go-peanut-butter-crunch-cereal-healthy-vs-frosted-f",
+        "is-kashi-chocolate-chip-chia-7-grain-cerel-healthy",
+        "is-kashi-chocolate-chip-chia-7-grain-healthy-vs-frosted-flak",
+        "is-nature-valley-coconut-almond-granola-healthy",
+        "is-nature-valley-trail-mix-chewy-granola-bars-healthy-vs-sni"
+      ]
+    }
+  ],
+  "relatedTopicSlugs": ["protein-bars", "healthy-convenience-foods"]
+}

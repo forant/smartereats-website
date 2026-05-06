@@ -20,6 +20,12 @@ export type PostMeta = {
   date: string
   /** Optional hero image path (under /public). */
   image?: string
+  /**
+   * Topic hub slugs this post belongs to. Generator-emitted; merged into
+   * /topics/[slug] hubs at build time alongside the manually-curated lists
+   * in content/topics/*.json. Unknown slugs are tolerated (audit flags them).
+   */
+  topics?: string[]
 }
 
 export type Post = PostMeta & {
@@ -52,8 +58,17 @@ function readPost(filename: string): Post | null {
     description: String(data.description),
     date: String(data.date),
     image: data.image ? String(data.image) : undefined,
+    topics: parseTopics(data.topics),
     content,
   }
+}
+
+function parseTopics(value: unknown): string[] | undefined {
+  if (!Array.isArray(value)) return undefined
+  const out = (value as unknown[]).filter(
+    (v): v is string => typeof v === "string" && v.length > 0
+  )
+  return out.length > 0 ? out : undefined
 }
 
 export function getAllPosts(): PostMeta[] {
@@ -64,6 +79,11 @@ export function getAllPosts(): PostMeta[] {
     .filter((p): p is Post => p !== null)
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .map(({ content: _content, ...meta }) => meta)
+}
+
+/** Posts that listed `topics:` in their frontmatter. Newest-first. */
+export function getPostsByTopic(topicSlug: string): PostMeta[] {
+  return getAllPosts().filter((p) => p.topics?.includes(topicSlug))
 }
 
 export function getPostBySlug(slug: string): Post | null {

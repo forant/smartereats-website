@@ -1,0 +1,69 @@
+{
+  "slug": "healthy-drinks",
+  "title": "Healthy Drinks",
+  "description": "Honest comparisons of sports drinks, juices, smoothies, and enhanced waters — sugar by sugar, calorie by calorie.",
+  "keywords": [
+    "healthy drinks",
+    "low sugar drinks",
+    "sports drinks comparison",
+    "is gatorade healthy",
+    "is vitamin water healthy",
+    "healthy juice alternatives"
+  ],
+  "intro": "Liquid calories are the single biggest sugar source in most people's diets — and the one most often hidden behind 'natural' or 'enhanced' marketing. We compare every major drink against the obvious alternative (often a Coke) so you can see the actual sugar load.",
+  "featuredPostSlugs": [
+    "is-gatorade-healthy",
+    "is-vitaminwater-healthy",
+    "is-coconut-water-healthy"
+  ],
+  "sections": [
+    {
+      "title": "Sports & Hydration Drinks",
+      "postSlugs": [
+        "is-gatorade-healthy",
+        "is-gatorade-healthy-vs-coca-cola",
+        "is-gatorade-healthy-vs-coconut-water",
+        "is-gatorade-frost-healthy",
+        "is-gatorade-frost-healthy-vs-coca-cola",
+        "is-powerade-healthy-vs-coconut-water",
+        "is-coconut-water-healthy"
+      ]
+    },
+    {
+      "title": "Vitamin Water & Enhanced Waters",
+      "postSlugs": [
+        "is-vitaminwater-healthy",
+        "is-vitaminwater-healthy-vs-coca-cola",
+        "is-vitamin-water-healthy",
+        "is-vitamin-water-orange-healthy",
+        "is-vitaminwater-zero-squeezed-lemonade-healthy",
+        "is-vitaminwater-zero-squeezed-lemonade-healthy-vs-coca-cola",
+        "is-vitaminwater-dragonfruit-nutrient-enhanced-water-beverage",
+        "is-a-ai-blueberry-pomegranate-x-nutrient-enhanced-water-he"
+      ]
+    },
+    {
+      "title": "Juices & Sweet Drinks",
+      "postSlugs": [
+        "is-capri-sun-healthy-vs-coca-cola",
+        "is-naked-juice-mango-machine-healthy",
+        "is-naked-juice-mango-machine-healthy-vs-coca-cola",
+        "is-honest-kids-apple-juice-healthy",
+        "is-honest-kids-apple-juice-healthy-vs-coca-cola",
+        "is-coca-cola-healthy"
+      ]
+    },
+    {
+      "title": "Smoothies, Tea & Plant Milks",
+      "postSlugs": [
+        "is-bolthouse-farms-green-goodness-smoothie-healthy",
+        "is-bolthouse-farms-green-goodness-smoothie-healthy-vs-plain",
+        "is-green-goodness-smoothie-healthy",
+        "is-green-machine-smoothie-healthy-vs-snickers",
+        "is-green-tea-healthy-vs-coke",
+        "oat-milk-vs-almond-milk"
+      ]
+    }
+  ],
+  "relatedTopicSlugs": ["weight-loss-snacks", "healthy-convenience-foods"]
+}

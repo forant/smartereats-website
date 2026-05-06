@@ -44,6 +44,96 @@ Each post is sent to Claude with a cached editorial-review system prompt. Return
 
 LLM checks default to `claude-opus-4-7` with adaptive thinking and `medium` effort, with the system prompt cached via `cache_control` to amortize cost across the run. Override the model and effort with `--model` and `--effort`.
 
+## Topic hubs
+
+Topic hubs are SEO-optimized cluster pages that group related posts into a category landing experience. They live at `/topics/[slug]` with an index at [/topics](app/topics/page.tsx). Each hub is a single JSON config — the content engine (or a human) just drops in slug references; the rendering, SEO, sitemap inclusion, and validation are all handled here.
+
+### Hub configuration
+
+Each `content/topics/*.json` is one hub:
+
+```jsonc
+{
+  "slug": "high-protein-snacks",
+  "title": "High Protein Snacks",
+  "description": "Used as the meta description and the lede paragraph.",
+  "keywords": ["high protein snacks", "protein bars", ...],
+  "intro": "Optional second paragraph of category context.",
+  "featuredPostSlugs": ["..."],            // Hand-picked top picks
+  "sections": [
+    {
+      "title": "Best Protein Bars",
+      "description": "Optional explanation under the section heading.",
+      "postSlugs": ["...", "..."]
+    }
+  ],
+  "relatedTopicSlugs": ["protein-bars", "weight-loss-snacks"]
+}
+```
+
+Required: `slug`, `title`, `description`. Everything else is optional. Hubs with no sections render a "growing collection" placeholder with related-topic suggestions.
+
+### Adding a new hub
+
+1. Drop a new `<slug>.json` into [content/topics/](content/topics/).
+2. List the post slugs you want to feature.
+3. `pnpm build` — the validator throws if any slug is invalid; clean build means it's live.
+
+That's it. No code changes. The `/topics` index, sitemap, and JSON-LD all pick the hub up automatically.
+
+### Validation
+
+Run automatically at build time via [lib/topics.ts](lib/topics.ts) (loaded by the route + sitemap). Catches:
+
+- Duplicate `slug` across configs
+- Missing required fields (`title`, `description`)
+- Slugs not in lowercase kebab-case
+- `postSlugs` referencing non-existent blog posts
+- `relatedTopicSlugs` referencing non-existent topics
+- A topic listing itself as related
+
+Failures throw with a clear message like:
+
+```
+Topic "bad-topic": references missing post slug "does-not-exist".
+Either add the post, fix the slug, or remove the reference.
+```
+
+CI catches these because the build fails. No silent drift.
+
+### Looking up a post's hubs
+
+The `getTopicsForPost(postSlug)` helper in [lib/topics.ts](lib/topics.ts) returns every hub a post belongs to. Useful when adding a "this post is in:" badge on individual blog posts later — not wired into the post page yet, but the API's there.
+
+### Two ways to attach a post to a hub
+
+Both work, both are merged at build time, and a post can use either or both.
+
+**1. JSON `postSlugs` (manual curation)**
+
+Edit `content/topics/<hub>.json` and list the slug under a section's `postSlugs`. Use this for hand-picked featured posts or thoughtfully grouped sub-collections (e.g. "Kind Bars", "RXBAR" inside the Protein Bars hub). The section heading and ordering are explicit.
+
+**2. Post frontmatter `topics:` (generator-friendly)**
+
+Add the hub slug to the post's frontmatter:
+
+```yaml
+---
+title: "Are New Brand Bars Healthy?"
+description: "..."
+date: "2026-05-15"
+topics: ["protein-bars", "high-protein-snacks"]
+---
+```
+
+The topic page automatically appends every post tagged this way under a "More in this topic" section, in newest-first order. **Posts already listed manually in a section are not duplicated** — manual placement always wins.
+
+This is the path the content engine should use for new posts. Each post tags its own hubs at generation time; no manual JSON edits needed for routine additions.
+
+**Validation**
+
+The auditor's `topics.unknown-tag` check flags any `topics:` value that doesn't match a real hub config. Build doesn't fail (unknown tags are silently dropped from rendering), but the audit surfaces them so they're easy to clean up.
+
 ### Linking between posts (`<RelatedPosts>`)
 
 Internal post-to-post links use a server component, not hardcoded markdown links. This way, when you rename a post's title, every "Related Comparisons" section that links to it picks up the new title automatically — no drift.

@@ -1,3 +1,4 @@
+import { getAllTopicSlugs } from "@/lib/topics"
 import type { CheckId, ExtractedPost, Issue } from "./types"
 
 const MIN_WORD_COUNT = 250
@@ -233,6 +234,22 @@ export function runDeterministicChecks(
       `Filename and frontmatter slug differ. Routes via "${post.slug}", file is "${post.filename}".`,
       "Either rename the file to match the slug, or remove the explicit slug field."
     )
+  }
+
+  // --- Frontmatter `topics:` resolves to real topic hubs ---
+  if (post.topicTags.length > 0) {
+    const validTopics = new Set(getAllTopicSlugs())
+    for (const tag of post.topicTags) {
+      if (!validTopics.has(tag)) {
+        push(
+          "topics.unknown-tag",
+          "medium",
+          "metadata",
+          `Frontmatter topics include unknown topic slug: "${tag}".`,
+          `Either add a content/topics/${tag}.json hub config or remove the tag.`
+        )
+      }
+    }
   }
 
   return issues

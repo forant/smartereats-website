@@ -1,0 +1,118 @@
+{
+  "slug": "protein-bars",
+  "title": "Protein Bars",
+  "description": "A complete library of protein bar reviews — Kind, Clif, RXBAR, Nature Valley, Kashi, MadeGood, Quaker — compared against the candy bars they often replace.",
+  "keywords": [
+    "protein bars",
+    "best protein bars",
+    "kind bars",
+    "clif bar review",
+    "rxbar review",
+    "nature valley protein bars"
+  ],
+  "intro": "Protein bars sit in a strange middle ground — marketed as health food, but often closer to candy on sugar, fat, and ingredient processing. We compare every major bar against its real-world alternative (often a Snickers) so you can see the tradeoff in plain numbers.",
+  "featuredPostSlugs": [
+    "kind-bar-vs-snickers",
+    "is-clif-bar-healthy-vs-snickers",
+    "is-rxbar-dark-chocolate-peanut-butter-healthy-vs-snickers"
+  ],
+  "sections": [
+    {
+      "title": "Kind Bars",
+      "postSlugs": [
+        "kind-bar-vs-snickers",
+        "is-kind-bar-healthy-vs-snickers",
+        "are-kind-bars-healthy",
+        "is-kind-almond-peanut-butter-dark-healthy-vs-snickers",
+        "are-kind-almond-peanut-butter-dark-chocolate-bars-healthy",
+        "is-kind-caramel-almond-with-almonds-healthy-vs-snickers",
+        "are-kind-caramel-almond-with-almonds-bars-healthy",
+        "is-kind-dark-chocolate-cherry-cashew-healthy-vs-snickers",
+        "are-kind-dark-chocolate-cherry-cashew-bars-healthy",
+        "is-kind-salted-caramel-dark-chocolate-nut-healthy-vs-snicker",
+        "are-kind-salted-caramel-dark-chocolate-nut-bars-healthy",
+        "is-kind-banana-nut-clusters-healthy-vs-snickers",
+        "is-kind-banana-nut-clusters-healthy",
+        "is-kind-raspberry-granola-with-chia-seeds-healthy-vs-snicker",
+        "are-kind-raspberry-granola-with-chia-seeds-healthy",
+        "is-kind-breakfast-bar-healthy-vs-frosted-flakes",
+        "is-kind-healthy-grains-granola-maple-quinoa-healthy-vs-snick",
+        "is-kind-healthy-grains-granola-healthy"
+      ]
+    },
+    {
+      "title": "Clif Bars",
+      "postSlugs": [
+        "is-clif-bar-healthy-vs-snickers",
+        "is-clif-bar-healthy",
+        "is-clif-bar-builders-bar-healthy-vs-snickers",
+        "is-clif-bar-builders-bar-healthy",
+        "is-clif-bar-builder-s-bar-crispy-peanut-butter-chocolate-hea",
+        "is-builders-bar-healthy",
+        "is-clif-bar-chocolate-brownie-healthy-vs-snickers",
+        "is-clif-bar-chocolate-brownie-healthy",
+        "is-clif-bar-peanut-butter-banana-dark-chocolate-healthy-vs-s",
+        "is-clif-bar-peanut-butter-banana-dark-chocolate-healthy",
+        "is-clif-bar-white-chocolate-macadamia-nut-healthy-vs-snicker",
+        "is-clif-bar-white-chocolate-macadamia-nut-healthy",
+        "is-clif-chocolate-chip-healthy-vs-snickers",
+        "is-clif-chocolate-chip-healthy"
+      ]
+    },
+    {
+      "title": "RXBAR",
+      "postSlugs": [
+        "is-rxbar-dark-chocolate-peanut-butter-healthy-vs-snickers",
+        "is-rxbar-dark-chocolate-peanut-butter-healthy",
+        "is-rxbar-honey-cinnamon-peanut-butter-healthy-vs-snickers",
+        "is-rxbar-honey-cinnamon-peanut-butter-healthy",
+        "is-rxbar-nut-butter-oat-blueberry-cashew-healthy-vs-snickers",
+        "is-rxbar-nut-butter-oat-blueberry-cashew-healthy",
+        "is-rxbar-minis-nut-butter-oat-healthy-vs-snickers",
+        "is-rxbar-minis-nut-butter-oat-healthy"
+      ]
+    },
+    {
+      "title": "Nature Valley",
+      "postSlugs": [
+        "is-nature-valley-coconut-almond-granola-healthy-vs-snickers",
+        "is-nature-valley-coconut-almond-granola-healthy",
+        "is-nature-valley-dark-chocolate-peanut-almond-chewy-granola",
+        "are-nature-valley-dark-chocolate-peanut-almond-chewy-granola",
+        "is-nature-valley-peanut-butter-chocolate-granola-healthy-vs",
+        "are-nature-valley-peanut-butter-chocolate-granola-bars-healt",
+        "is-nature-valley-salted-caramel-nut-chewy-bars-healthy-vs-sn",
+        "are-nature-valley-salted-caramel-nut-chewy-bars-healthy",
+        "is-nature-valley-sweet-and-salty-nut-healthy-vs-snickers",
+        "are-nature-valley-sweet-and-salty-nut-bars-healthy",
+        "is-nature-valley-sweet-salty-nut-cashew-chewy-granola-bars-h",
+        "are-nature-valley-sweet-salty-nut-cashew-chewy-granola-bars",
+        "is-nature-valley-trail-mix-chewy-granola-bars-healthy-vs-sni",
+        "are-nature-valley-trail-mix-chewy-granola-bars-healthy"
+      ]
+    },
+    {
+      "title": "Kashi, MadeGood, Quaker, Junkless & Others",
+      "postSlugs": [
+        "is-kashi-honey-oat-flax-crunchy-7-grain-with-quinoa-bars-hea",
+        "are-kashi-honey-oat-flax-bars-healthy",
+        "is-kashi-trail-mix-chewy-granola-bar-healthy-vs-frosted-flak",
+        "is-kashi-trail-mix-chewy-granola-bar-healthy",
+        "is-madegood-organic-chewy-granola-bar-healthy-vs-snickers",
+        "are-madegood-organic-chewy-granola-bars-healthy",
+        "is-madegood-organic-chocolate-chip-rice-crispy-squares-healt",
+        "is-quaker-chewy-dipps-bar-healthy-vs-snickers",
+        "is-quaker-chewy-granola-bar-s-mores-healthy-vs-snickers",
+        "are-s-mores-quaker-chewy-granola-bars-healthy",
+        "is-junkless-granola-bar-healthy-vs-snickers",
+        "is-chewy-granola-bar-healthy-vs-snickers",
+        "is-chewy-granola-bar-healthy-vs-butterfinger",
+        "is-atkinson-s-chewy-caramel-bar-healthy-vs-snickers",
+        "is-atkinson-s-chewy-caramel-bar-healthy",
+        "is-kirkland-dipped-chewy-granola-bar-healthy-vs-snickers",
+        "are-kirkland-dipped-chewy-granola-bars-healthy"
+      ]
+    }
+  ],
+  "relatedTopicSlugs": ["high-protein-snacks", "weight-loss-snacks", "healthy-convenience-foods"]
+}

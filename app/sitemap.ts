@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next"
 import { getAllPosts } from "@/lib/blog"
+import { getAllTopics } from "@/lib/topics"
 
 export const dynamic = "force-static"
 
@@ -23,6 +24,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    {
+      url: `${SITE_URL}/topics`,
+      lastModified: latestPostDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    ...getAllTopics().map((topic) => ({
+      url: `${SITE_URL}/topics/${topic.slug}`,
+      lastModified: latestPostDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     ...posts.map((post) => ({
       url: `${SITE_URL}/blog/${post.slug}`,
       lastModified: post.date,
