@@ -38,8 +38,7 @@
         "is-vitamin-water-orange-healthy",
         "is-vitaminwater-zero-squeezed-lemonade-healthy",
         "is-vitaminwater-zero-squeezed-lemonade-healthy-vs-coca-cola",
-        "is-vitaminwater-dragonfruit-nutrient-enhanced-water-beverage",
-        "is-a-ai-blueberry-pomegranate-x-nutrient-enhanced-water-he"
+        "is-vitaminwater-dragonfruit-nutrient-enhanced-water-beverage"
       ]
     },
     {
@@ -60,10 +59,12 @@
         "is-bolthouse-farms-green-goodness-smoothie-healthy-vs-plain",
         "is-green-goodness-smoothie-healthy",
         "is-green-machine-smoothie-healthy-vs-snickers",
-        "is-green-tea-healthy-vs-coke",
-        "oat-milk-vs-almond-milk"
+        "is-green-tea-healthy-vs-coke"
       ]
     }
   ],
-  "relatedTopicSlugs": ["weight-loss-snacks", "healthy-convenience-foods"]
+  "relatedTopicSlugs": [
+    "weight-loss-snacks",
+    "healthy-convenience-foods"
+  ]
 }

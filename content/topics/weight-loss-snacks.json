@@ -23,7 +23,6 @@
         "is-rxbar-dark-chocolate-peanut-butter-healthy-vs-snickers",
         "is-rxbar-honey-cinnamon-peanut-butter-healthy-vs-snickers",
         "is-clif-bar-builders-bar-healthy-vs-snickers",
-        "kind-bar-vs-snickers",
         "is-kind-bar-healthy-vs-snickers"
       ]
     },
@@ -43,10 +42,13 @@
       "postSlugs": [
         "are-kind-bars-healthy",
         "is-chobani-flip-s-mores-healthy",
-        "is-yoplait-go-gurt-healthy-vs-snickers",
-        "oat-milk-vs-almond-milk"
+        "is-yoplait-go-gurt-healthy-vs-snickers"
       ]
     }
   ],
-  "relatedTopicSlugs": ["high-protein-snacks", "healthy-drinks", "healthy-convenience-foods"]
+  "relatedTopicSlugs": [
+    "high-protein-snacks",
+    "healthy-drinks",
+    "healthy-convenience-foods"
+  ]
 }

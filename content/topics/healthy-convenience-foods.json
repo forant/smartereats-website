@@ -12,7 +12,6 @@
   "intro": "Convenience food is unavoidable; the goal is to make the convenient choice the better choice. We compare common packaged snacks to their candy/chip alternatives, so you can swap up rather than out.",
   "featuredPostSlugs": [
     "is-cheez-its-healthy-vs-pringles",
-    "is-doritos-healthy",
     "are-frosted-flakes-healthy"
   ],
   "sections": [
@@ -20,7 +19,6 @@
       "title": "Chips, Crisps & Veggie Straws",
       "postSlugs": [
         "is-cheez-its-healthy-vs-pringles",
-        "is-doritos-healthy",
         "is-pop-corners-healthy-vs-doritos",
         "is-pop-corners-sea-salt-healthy-vs-doritos",
         "is-sea-salt-popcorners-healthy",
@@ -51,7 +49,6 @@
     {
       "title": "Fruit Snacks & Gummies",
       "postSlugs": [
-        "is-skittles-healthy",
         "is-go-bio-organic-sour-fruit-gummies-healthy-vs-skittles",
         "are-go-bio-organic-sour-fruit-gummies-healthy",
         "is-fruifuls-healthy-vs-snickers",
@@ -67,9 +64,7 @@
         "are-frosted-flakes-healthy",
         "is-special-k-healthy-vs-frosted-flakes",
         "is-special-k-fruit-yogurt-healthy-vs-frosted-flakes",
-        "is-special-k-pastry-crisps-healthy",
         "is-special-k-pastry-crisps-healthy-vs-frosted-flakes",
-        "is-special-k-brown-sugar-cinnamon-pastry-crisps-healthy",
         "is-special-k-brown-sugar-cinnamon-pastry-crisps-healthy-vs-f",
         "are-special-k-red-berries-healthy",
         "is-special-k-red-berries-healthy-vs-frosted-flakes",
@@ -102,5 +97,9 @@
       ]
     }
   ],
-  "relatedTopicSlugs": ["weight-loss-snacks", "protein-bars", "healthy-costco-foods"]
+  "relatedTopicSlugs": [
+    "weight-loss-snacks",
+    "protein-bars",
+    "healthy-costco-foods"
+  ]
 }

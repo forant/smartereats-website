@@ -12,7 +12,6 @@
   ],
   "intro": "Protein bars sit in a strange middle ground — marketed as health food, but often closer to candy on sugar, fat, and ingredient processing. We compare every major bar against its real-world alternative (often a Snickers) so you can see the tradeoff in plain numbers.",
   "featuredPostSlugs": [
-    "kind-bar-vs-snickers",
     "is-clif-bar-healthy-vs-snickers",
     "is-rxbar-dark-chocolate-peanut-butter-healthy-vs-snickers"
   ],
@@ -20,7 +19,6 @@
     {
       "title": "Kind Bars",
       "postSlugs": [
-        "kind-bar-vs-snickers",
         "is-kind-bar-healthy-vs-snickers",
         "are-kind-bars-healthy",
         "is-kind-almond-peanut-butter-dark-healthy-vs-snickers",
@@ -32,7 +30,6 @@
         "is-kind-salted-caramel-dark-chocolate-nut-healthy-vs-snicker",
         "are-kind-salted-caramel-dark-chocolate-nut-bars-healthy",
         "is-kind-banana-nut-clusters-healthy-vs-snickers",
-        "is-kind-banana-nut-clusters-healthy",
         "is-kind-raspberry-granola-with-chia-seeds-healthy-vs-snicker",
         "are-kind-raspberry-granola-with-chia-seeds-healthy",
         "is-kind-breakfast-bar-healthy-vs-frosted-flakes",
@@ -114,5 +111,9 @@
       ]
     }
   ],
-  "relatedTopicSlugs": ["high-protein-snacks", "weight-loss-snacks", "healthy-convenience-foods"]
+  "relatedTopicSlugs": [
+    "high-protein-snacks",
+    "weight-loss-snacks",
+    "healthy-convenience-foods"
+  ]
 }
