@@ -5,6 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc"
 import { BlogCTA } from "@/components/blog/blog-cta"
 import { RelatedPosts } from "@/components/blog/related-posts"
 import { formatDate, getAllSlugs, getPostBySlug } from "@/lib/blog"
+import { findRelatedPosts } from "@/lib/topics"
 
 const mdxComponents = { RelatedPosts }
 
@@ -110,7 +111,57 @@ export default async function BlogPostPage({
         <MDXRemote source={post.content} components={mdxComponents} />
       </article>
 
+      <AutoRelatedFallback post={post} />
+
       <BlogCTA />
     </main>
+  )
+}
+
+/**
+ * If the MDX body doesn't already include a `<RelatedPosts>` component,
+ * synthesize one from topic-hub membership. Lets posts that haven't yet been
+ * regenerated through the new generator template still get an internal-link
+ * exit at the bottom. Once a post's body has its own `<RelatedPosts>`, this
+ * silently no-ops.
+ */
+function AutoRelatedFallback({
+  post,
+}: {
+  post: { slug: string; content: string }
+}) {
+  if (/<RelatedPosts\b/.test(post.content)) return null
+  const related = findRelatedPosts(post.slug, 4)
+  if (related.length === 0) return null
+
+  return (
+    <section
+      aria-labelledby="auto-related-heading"
+      className="mt-14 border-t border-border pt-10"
+    >
+      <h2
+        id="auto-related-heading"
+        className="text-xl font-semibold tracking-tight"
+      >
+        Related Comparisons
+      </h2>
+      <ul role="list" className="mt-4 space-y-3">
+        {related.map((p) => (
+          <li key={p.slug}>
+            <Link
+              href={`/blog/${p.slug}`}
+              className="group block rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <span className="font-medium leading-snug group-hover:text-primary transition-colors">
+                {p.title}
+              </span>
+              <span className="block text-sm text-muted-foreground leading-relaxed">
+                {p.description}
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
   )
 }

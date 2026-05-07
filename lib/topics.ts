@@ -97,6 +97,45 @@ export function getAllTopicSlugs(): string[] {
 }
 
 /**
+ * Find peer posts that share at least one topic hub with this post — used as
+ * an auto-fallback for posts whose body doesn't include an explicit
+ * `<RelatedPosts>` section. Ranks by shared-hub count then by recency.
+ *
+ * Returns an empty array when the post isn't in any hub. The caller decides
+ * whether to render a fallback section.
+ */
+export function findRelatedPosts(
+  postSlug: string,
+  limit = 4
+): PostMeta[] {
+  const myTopics = getTopicsForPost(postSlug)
+  if (myTopics.length === 0) return []
+
+  const scores = new Map<string, { post: PostMeta; shared: number }>()
+  for (const topic of myTopics) {
+    const resolved = resolveTopic(topic)
+    const peers = [
+      ...resolved.featured,
+      ...resolved.resolvedSections.flatMap((s) => s.posts),
+    ]
+    for (const peer of peers) {
+      if (peer.slug === postSlug) continue
+      const existing = scores.get(peer.slug)
+      if (existing) existing.shared += 1
+      else scores.set(peer.slug, { post: peer, shared: 1 })
+    }
+  }
+
+  return [...scores.values()]
+    .sort((a, b) => {
+      if (a.shared !== b.shared) return b.shared - a.shared
+      return a.post.date < b.post.date ? 1 : -1
+    })
+    .slice(0, limit)
+    .map((entry) => entry.post)
+}
+
+/**
  * Topics that contain a given post slug, for "this post belongs to…" badges.
  * Cheap O(topics × sections) — fine at our scale.
  */

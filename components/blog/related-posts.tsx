@@ -10,7 +10,11 @@ type Props = {
    * Example: `slugs="is-foo-healthy,bar-vs-baz"`
    */
   slugs: string
-  /** Section heading. Defaults to "Related Comparisons". Pass `null` to hide. */
+  /**
+   * Optional section heading. Hidden by default — every existing post puts
+   * `## Related Comparisons` in MDX above the component, so we'd render twice
+   * if this defaulted to a value. Pass an explicit string to opt back in.
+   */
   title?: string | null
 }
 
@@ -25,7 +29,7 @@ type Props = {
  * Unknown slugs are skipped silently and logged to the build output. The
  * auditor's `links.missing-target` check covers them with a louder warning.
  */
-export function RelatedPosts({ slugs, title = "Related Comparisons" }: Props) {
+export function RelatedPosts({ slugs, title = null }: Props) {
   const slugList = (slugs ?? "")
     .split(",")
     .map((s) => s.trim())
