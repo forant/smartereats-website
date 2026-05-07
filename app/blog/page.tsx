@@ -27,6 +27,12 @@ export default function BlogIndex() {
           Food comparisons, label decoding, and nutrition takes — written for
           people who actually want to know what&apos;s in their food.
         </p>
+        <Link
+          href="/topics"
+          className="mt-4 inline-block text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          Or browse by topic →
+        </Link>
       </header>
 
       {posts.length === 0 ? (

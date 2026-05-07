@@ -5,7 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc"
 import { BlogCTA } from "@/components/blog/blog-cta"
 import { RelatedPosts } from "@/components/blog/related-posts"
 import { formatDate, getAllSlugs, getPostBySlug } from "@/lib/blog"
-import { findRelatedPosts } from "@/lib/topics"
+import { findRelatedPosts, getTopicsForPost } from "@/lib/topics"
 
 const mdxComponents = { RelatedPosts }
 
@@ -58,6 +58,7 @@ export default async function BlogPostPage({
   if (!post) notFound()
 
   const url = `${SITE_URL}/blog/${post.slug}`
+  const topics = getTopicsForPost(post.slug)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -105,6 +106,26 @@ export default async function BlogPostPage({
         <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
           {post.description}
         </p>
+        {topics.length > 0 && (
+          <p className="mt-4 text-sm text-muted-foreground">
+            <span className="text-muted-foreground/70">In </span>
+            {topics.map((t, i) => (
+              <span key={t.slug}>
+                {i > 0 && (
+                  <span aria-hidden="true" className="text-muted-foreground/50">
+                    {" · "}
+                  </span>
+                )}
+                <Link
+                  href={`/topics/${t.slug}`}
+                  className="underline underline-offset-2 hover:text-foreground transition-colors"
+                >
+                  {t.title}
+                </Link>
+              </span>
+            ))}
+          </p>
+        )}
       </header>
 
       <article className="prose">

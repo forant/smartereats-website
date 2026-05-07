@@ -20,6 +20,12 @@ export function Footer() {
               Blog
             </a>
             <a
+              href="/topics"
+              className="hover:text-foreground transition-colors"
+            >
+              Topics
+            </a>
+            <a
               href="/privacy"
               className="hover:text-foreground transition-colors"
             >
