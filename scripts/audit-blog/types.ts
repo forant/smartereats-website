@@ -8,6 +8,7 @@ export type IssueCategory =
   | "content_quality"
   | "comparison_logic"
   | "duplicate"
+  | "medical_language"
 
 /** Stable check identifier — used to suppress specific issues per post. */
 export type CheckId =
@@ -26,6 +27,13 @@ export type CheckId =
   | "content.low-word-count"
   | "links.missing-target"
   | "topics.unknown-tag"
+  | "medical.disease-claim"
+  | "medical.treatment-claim"
+  | "medical.cholesterol-claim"
+  | "medical.detox-claim"
+  | "medical.immunity-claim"
+  | "medical.fear-rhetoric"
+  | "medical.absolute-claim"
   | "llm.comparison-sense"
   | "llm.unusual-framing"
   | "llm.verdict-match"

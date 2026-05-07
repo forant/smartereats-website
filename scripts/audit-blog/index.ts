@@ -17,6 +17,7 @@
 
 import { extractPost, listPostFilenames } from "./extract"
 import { runDeterministicChecks } from "./deterministic"
+import { runMedicalLanguageChecks } from "./medical-language"
 import { LLMReviewer } from "./llm"
 import { buildReport, printSummary, writeReport } from "./output"
 import type { ExtractedPost, Issue } from "./types"
@@ -163,6 +164,7 @@ async function main() {
     process.stdout.write(`[${postIndex}/${toAudit.length}] ${post.slug} `)
 
     allIssues.push(...runDeterministicChecks(post, allExtracted))
+    allIssues.push(...runMedicalLanguageChecks(post))
 
     if (reviewer) {
       try {

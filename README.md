@@ -150,6 +150,78 @@ In MDX:
 
 Unknown slugs are skipped silently at render time and surfaced loudly by the auditor's `links.missing-target` check.
 
+### Medical / risky-language checks
+
+A dedicated audit pass scans every post for three classes of problem:
+
+| Class | Examples (real flags) | Severity |
+|---|---|---|
+| **Disease / treatment claims** | "prevents diabetes", "cures inflammation", "reverses insulin resistance", "treats obesity" | `blocker` (audit fails CI) |
+| **Risk-reduction phrasing** | "reduces risk of heart disease", "protects against cancer", "lowers cholesterol", "boosts immunity", "detoxifies", "heals your gut" | `high` |
+| **Fear rhetoric** | "toxic", "poison", "fake food", "destroys your metabolism", "wrecks your gut", "endocrine-disrupting" | `high` |
+| **Unsupported absolutes** | "this is healthy.", "the healthiest", "everyone should avoid", "never eat" | `medium` |
+
+Each flag includes the exact offending phrase, an explanation of why it's risky, and a suggested rewrite. The check IDs sit under the `medical.*` namespace ([scripts/audit-blog/types.ts](scripts/audit-blog/types.ts) `CheckId` union) and the rules live in [scripts/audit-blog/medical-language.ts](scripts/audit-blog/medical-language.ts).
+
+#### Philosophy
+
+The auditor is **not a medical fact-checker**. The goal is to keep generated content in the lane the site stands for — practical, goal-aware, tradeoff-aware nutrition guidance — and out of two specific failure modes:
+
+1. **Medical overreach** that creates legal/platform risk (disease claims, treatment language, FDA-regulated terminology).
+2. **Inflammatory wellness rhetoric** that erodes trust ("toxic", "poison", "destroys your gut").
+
+What's deliberately **not flagged** (the test suite enforces this):
+
+- Ordinary nutrition descriptors: *high in sodium*, *calorie dense*, *low in protein*, *highly processed*, *less filling*, *easy to overeat*, *higher in added sugar*, *lower in fiber*
+- Goal-context framing: *depending on your goals*, *can fit some eating patterns*, *less ideal for satiety-focused goals*, *more aligned with weight loss goals*
+- Factual nutrient discussion: *high in vitamin C*, *contains 12g of added sugar*, *cholesterol management depends on overall diet*
+- Question titles: *Is X Healthy?* / *Are X Healthy?* (questions, not claims)
+
+#### Updating rules
+
+Rules live as data in [scripts/audit-blog/medical-language.ts](scripts/audit-blog/medical-language.ts) — the `RULES` array. Each rule has:
+
+```ts
+{
+  id: CheckId,           // namespaced check identifier
+  severity: Severity,    // blocker | high | medium | low
+  label: string,         // short tag rendered into the issue text
+  why: string,           // 1–2 sentence explanation surfaced to reviewers
+  suggest: string,       // safer rewrite or reframing heuristic
+  patterns: RegExp[],    // any pattern matching → rule fires
+}
+```
+
+To add or modify a rule:
+
+1. Edit the rule (or add a new one) in `RULES`.
+2. Add a matching test case to [scripts/audit-blog/medical-language.test.ts](scripts/audit-blog/medical-language.test.ts) — at minimum, one true-positive (it fires) and one false-positive guard (similar but acceptable phrasing doesn't fire).
+3. `pnpm audit:test` — must stay green.
+4. `pnpm audit:blog -- --no-llm` to see what surfaces in the real corpus before merging.
+
+The matched substring is capped at 3 instances per rule per post to prevent noisy posts from dominating the report.
+
+#### Per-post suppression
+
+If a specific flag is a known false positive on a specific post, suppress it via `audit_ignore` frontmatter (same mechanism as other checks):
+
+```yaml
+---
+title: "..."
+audit_ignore: ["medical.absolute-claim"]
+---
+```
+
+Use sparingly. Suppressions show in the summary's "Suppressed" count so they remain visible.
+
+#### Tests
+
+Run with `pnpm audit:test`. The suite covers:
+
+- True positives across all rule classes (disease claims, risk phrasing, cholesterol, detox, immunity, "heals", fear vocabulary, absolutes)
+- False-positive guards: ordinary nutrition language, contextual goal-oriented language, question-style titles
+- Issue payload shape: matched text included, suggested rewrite included, `human_review_needed: true`, 3-match cap respected
+
 ### Suppressing false positives (`audit_ignore`)
 
 Some checks are heuristic and over-fire on edge cases (a singular product whose name happens to contain a plural noun, etc.). Suppress per post by adding an `audit_ignore` list in frontmatter — each entry is a stable `check_id`:

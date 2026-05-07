@@ -11,6 +11,7 @@ const CATEGORIES: IssueCategory[] = [
   "content_quality",
   "comparison_logic",
   "duplicate",
+  "medical_language",
 ]
 
 const CSV_COLUMNS = [

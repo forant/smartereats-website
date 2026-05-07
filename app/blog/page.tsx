@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { BlogDisclaimer } from "@/components/blog/disclaimer"
 import { formatDate, getAllPosts } from "@/lib/blog"
 
 export const metadata: Metadata = {
@@ -64,6 +65,7 @@ export default function BlogIndex() {
           ))}
         </ul>
       )}
+      <BlogDisclaimer />
     </main>
   )
 }

@@ -3,6 +3,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { MDXRemote } from "next-mdx-remote/rsc"
 import { BlogCTA } from "@/components/blog/blog-cta"
+import { BlogDisclaimer } from "@/components/blog/disclaimer"
 import { RelatedPosts } from "@/components/blog/related-posts"
 import { formatDate, getAllSlugs, getPostBySlug } from "@/lib/blog"
 import { findRelatedPosts, getTopicsForPost } from "@/lib/topics"
@@ -135,6 +136,8 @@ export default async function BlogPostPage({
       <AutoRelatedFallback post={post} />
 
       <BlogCTA />
+
+      <BlogDisclaimer />
     </main>
   )
 }
