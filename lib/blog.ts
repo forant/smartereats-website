@@ -56,11 +56,27 @@ function readPost(filename: string): Post | null {
     slug,
     title: String(data.title),
     description: String(data.description),
-    date: String(data.date),
+    date: normalizeDate(data.date, filename),
     image: data.image ? String(data.image) : undefined,
     topics: parseTopics(data.topics),
     content,
   }
+}
+
+/**
+ * Coerce a frontmatter date to a YYYY-MM-DD string.
+ *
+ * YAML parses unquoted dates (`date: 2026-05-07`) as JS Date objects, but
+ * quoted ones (`date: "2026-05-07"`) stay as strings. Normalize both shapes
+ * here so downstream code can assume a clean ISO date string.
+ */
+function normalizeDate(value: unknown, filename: string): string {
+  if (value instanceof Date) return value.toISOString().slice(0, 10)
+  const s = String(value)
+  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s
+  throw new Error(
+    `Blog post "${filename}" has invalid date "${s}" — expected YYYY-MM-DD.`
+  )
 }
 
 function parseTopics(value: unknown): string[] | undefined {
