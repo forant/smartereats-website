@@ -47,8 +47,9 @@ export default function TermsPage() {
 
         <div className="mt-8 text-sm leading-relaxed text-gray-700 space-y-4">
           <p>
-            SmarterEats (“we,” “our,” or “us”) provides food analysis, nutrition insights,
-            and comparison tools through the SmarterEats mobile application and website
+            SmarterEats is operated by Smarter Foundry LLC (“SmarterEats,” “we,” “our,”
+            or “us”). Smarter Foundry LLC provides food analysis, nutrition insights, and
+            comparison tools through the SmarterEats mobile application and website
             (the “Service”).
           </p>
           <p>
@@ -104,7 +105,44 @@ export default function TermsPage() {
           </p>
         </Section>
 
-        <Section title="4. Privacy">
+        <Section title="4. Food Allergies and Dietary Restrictions">
+          <p>
+            SmarterEats may allow users to identify allergens, sensitivities, or dietary
+            exclusions in order to reduce the likelihood that certain foods or ingredients
+            appear in recommendations, comparisons, or suggested alternatives. This
+            functionality is provided solely as a convenience feature and does not
+            constitute a guarantee, certification, or representation that any food or
+            product is safe, allergen-free, or appropriate for any individual user.
+          </p>
+
+          <p>
+            Ingredient information, manufacturer formulations, restaurant preparation
+            methods, and product labeling may change at any time and may be incomplete,
+            inaccurate, or unavailable within the Service. SmarterEats does not verify
+            ingredient lists, manufacturing environments, or cross-contamination risks.
+          </p>
+
+          <p>
+            Users are solely responsible for independently reviewing ingredient labels,
+            packaging, restaurant disclosures, and other official product information
+            before consuming any food product.
+          </p>
+
+          <p>
+            Users with food allergies, sensitivities, celiac disease, or other medical
+            dietary conditions should consult qualified healthcare professionals regarding
+            their dietary decisions.
+          </p>
+
+          <p>
+            By using allergen or dietary exclusion features, you acknowledge and agree
+            that you do so at your own risk and that SmarterEats makes no warranties
+            regarding the accuracy, completeness, reliability, or suitability of any
+            allergen-related information or recommendations.
+          </p>
+        </Section>
+
+        <Section title="5. Privacy">
           <p>
             Your use of the Service is also governed by our{" "}
             <a href="/privacy" className="text-blue-600 underline">
@@ -113,7 +151,7 @@ export default function TermsPage() {
           </p>
         </Section>
 
-        <Section title="5. Intellectual Property">
+        <Section title="6. Intellectual Property">
           <p>
             All content, features, and functionality of the Service—including text,
             graphics, logos, and software—are owned by SmarterEats or its licensors and
@@ -126,7 +164,7 @@ export default function TermsPage() {
           </p>
         </Section>
 
-        <Section title="6. Third-Party Data and Services">
+        <Section title="7. Third-Party Data and Services">
           <p>
             SmarterEats may rely on third-party data sources for food and nutrition
             information.
@@ -137,7 +175,7 @@ export default function TermsPage() {
           </p>
         </Section>
 
-        <Section title="7. Disclaimer of Warranties">
+        <Section title="8. Disclaimer of Warranties">
           <p>
             The Service is provided “as is” and “as available” without warranties of any
             kind, express or implied.
@@ -153,7 +191,7 @@ export default function TermsPage() {
           />
         </Section>
 
-        <Section title="8. Limitation of Liability">
+        <Section title="9. Limitation of Liability">
           <p>
             To the fullest extent permitted by law, SmarterEats shall not be liable for
             any indirect, incidental, or consequential damages arising from your use of
@@ -163,7 +201,7 @@ export default function TermsPage() {
           <p>Your use of the Service is at your own risk.</p>
         </Section>
 
-        <Section title="9. Changes to These Terms">
+        <Section title="10. Changes to These Terms">
           <p>
             We may update these Terms from time to time. We will update the Effective Date
             when changes are made.
@@ -174,21 +212,21 @@ export default function TermsPage() {
           </p>
         </Section>
 
-        <Section title="10. Termination">
+        <Section title="11. Termination">
           <p>
             We reserve the right to suspend or terminate access to the Service at any
             time, without notice, for any reason.
           </p>
         </Section>
 
-        <Section title="11. Governing Law">
+        <Section title="12. Governing Law">
           <p>
             These Terms are governed by the laws of the State of California, without
             regard to conflict of law principles.
           </p>
         </Section>
 
-        <Section title="12. Contact Us">
+        <Section title="13. Contact Us">
           <p>If you have any questions about these Terms, please contact us at:</p>
 
           <p>
